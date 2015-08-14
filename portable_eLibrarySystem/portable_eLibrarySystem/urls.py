@@ -20,4 +20,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^login/$','portable_eLibrarySystem.views.admin_login'),
+    url(r'^logout/$','portable_eLibrarySystem.views.logout_view'),
+    url(r'^auth/$','portable_eLibrarySystem.views.auth'),
+    url(r'^login/status/$','portable_eLibrarySystem.views.check_login'),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

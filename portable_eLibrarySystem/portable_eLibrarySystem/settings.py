@@ -27,11 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-TEMPLATE_DIRS =(
-#os.path.join(BASE_DIR,"order/template"),
-os.path.join(BASE_DIR, "html_template"),
-)
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -59,7 +54,7 @@ ROOT_URLCONF = 'portable_eLibrarySystem.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR, "html_template",],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
