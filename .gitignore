@@ -1,0 +1,26 @@
+*~
+*.pyc
+*.html~
+.idea
+*REMOTE*
+*LOCAL*
+*BASE*
+*BACKUP*
+*.orig
+migrations/
+Project_Database/
+path.txt
+prepros.cfg
+Media
+# ignore csv file
+*.csv
+
+# ignore mac display settings files
+.DS_Store
+
+# ignore windows display setting files
+Thumbs.db
+
+# ignore zip files
+*.zip
+*.rar
