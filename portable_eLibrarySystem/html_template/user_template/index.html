@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+{% include 'html_template/user_template/header.html' %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">            
+            <div class="thumbnail">
+                <div class="caption">
+                    <h4>Thumbnail Headline</h4>
+                    <p>short thumbnail description</p>
+                    <p><a href="" class="label label-danger" rel="tooltip" title="Zoom">Zoom</a>
+                    <a href="" class="label label-default" rel="tooltip" title="Download now">Download</a></p>
+                </div>
+                <img src="http://lorempixel.com/400/300/sports/1/" alt="...">
+            </div>
+      </div>
+      
+        <div class="col-md-3">            
+            <div class="thumbnail">
+                <div class="caption">
+                    <h4>Thumbnail Headline</h4>
+                    <p>short thumbnail description</p>
+                    <p><a href="" class="label label-danger" rel="tooltip" title="Zoom">Zoom</a>
+                    <a href="" class="label label-default" rel="tooltip" title="Download now">Download</a></p>
+                </div>
+                <img src="http://lorempixel.com/400/300/sports/2/" alt="...">
+            </div>
+      </div>
+
+        <div class="col-md-3">            
+            <div class="thumbnail">
+                <div class="caption">
+                    <h4>Thumbnail Headline</h4>
+                    <p>short thumbnail description</p>
+                    <p><a href="" class="label label-danger" rel="tooltip" title="Zoom">Zoom</a>
+                    <a href="" class="label label-default" rel="tooltip" title="Download now">Download</a></p>
+                </div>
+                <img src="http://lorempixel.com/400/300/sports/3/" alt="...">
+            </div>
+      </div>
+
+        <div class="col-md-3">            
+            <div class="thumbnail">
+                <div class="caption">
+                    <h4>Thumbnail Headline</h4>
+                    <p>short thumbnail description</p>
+                    <p><a href="" class="label label-danger" rel="tooltip" title="Zoom">Zoom</a>
+                    <a href="" class="label label-default" rel="tooltip" title="Download now">Download</a></p>
+                </div>
+                <img src="http://lorempixel.com/400/300/sports/4/" alt="...">
+            </div>
+      </div>        
+        
+  </div>
+  
+</div><!-- /.container -->
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/angular.min.js' %}"></script>
+<script>
+    $( document ).ready(function() {
+    $("[rel='tooltip']").tooltip();    
+ 
+    $('.thumbnail').hover(
+        function(){
+            $(this).find('.caption').slideDown(250); //.fadeIn(250)
+        },
+        function(){
+            $(this).find('.caption').slideUp(250); //.fadeOut(205)
+        }
+    ); 
+});
+</script>
+</body>
+</html>

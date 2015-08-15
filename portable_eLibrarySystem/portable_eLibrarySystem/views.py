@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login
 
 ## rendering admin login page
 def admin_login(request):
-    return render_to_response('admin_template/adminPanelLogin.html')
+    return render_to_response('html_template/admin_template/adminPanelLogin.html')
 
 ## login in our system
 def auth(request):
@@ -19,7 +19,7 @@ def auth(request):
             login(request, user)
             # user_status = is_member(user)
             # print "user_status-->", user_status
-            return HttpResponse(json.dumps({"username":username,"url": '/adminHome', "status": True}), content_type="application/json")
+            return HttpResponse(json.dumps({"username":username,"url": '/landing/page/', "status": True}), content_type="application/json")
         else:
             return HttpResponse(json.dumps({"validation": "Invalid login details", "status": False}), content_type="application/json")
     else:
@@ -37,3 +37,7 @@ def check_login(request):
         return HttpResponse(json.dumps({"username": user.username, "status": True}), content_type="application/json")
     else:
         return HttpResponse(json.dumps({"status": False}), content_type="application/json")
+
+def landing_page(request):
+    if request.user.is_authenticated():
+        return render_to_response('html_template/user_template/index.html')
