@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+<form action="/carrier/add/" method="post">
+	{% for field in form %}
+	<div class="form-group">
+	{{ field }}
+	</div>
+	{% endfor %}
+	<input class="form-control margin_input" type="hidden" name="teriff" value="">
+	<button  class="btn btn-default" type="submit" style="display:block; margin: 0 auto; ">Submit</button>
+	{{validation}}
+</form>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/angular.min.js' %}"></script>
+</body>
+</html>

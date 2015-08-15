@@ -13,5 +13,7 @@ class Econtaint(models.Model):
 	tag = models.IntegerField(choices=CONTAINENTCHOICES)
 	search_tags = models.TextField()
 	content = models.FileField(upload_to=get_upload_containt)
+	created = models.DateTimeField(auto_now_add=True)
+	modified = models.DateTimeField(auto_now=True)
 	def __unicode__(self):
 		return self.name + ' '+'Tag-->'+self.tag
