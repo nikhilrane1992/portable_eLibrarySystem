@@ -5,6 +5,11 @@ from django.db import models
 def get_upload_containt(instance, filename):
     return "Containt/%s" %(filename)
 
+class Media_containt(models.Model):
+	file = models.FileField(upload_to=get_upload_containt)
+	def __unicode__(self):
+		return str(self.file)
+
 class Econtaint(models.Model):
 	BOOK = 0
 	VIDEO = 1
@@ -12,8 +17,8 @@ class Econtaint(models.Model):
 	name = models.CharField(max_length=500)
 	tag = models.IntegerField(choices=CONTAINENTCHOICES)
 	search_tags = models.TextField()
-	content = models.FileField(upload_to=get_upload_containt)
+	content = models.ForeignKey('Media_containt')
 	created = models.DateTimeField(auto_now_add=True)
 	modified = models.DateTimeField(auto_now=True)
 	def __unicode__(self):
-		return self.name + ' '+'Tag-->'+self.tag
+		return self.name + ' '+'Tag-->'+str(self.tag)
