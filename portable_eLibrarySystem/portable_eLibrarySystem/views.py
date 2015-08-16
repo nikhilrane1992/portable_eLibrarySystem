@@ -4,6 +4,10 @@ import json
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate, login
 
+## book partial page
+def book_partial_page(request):
+    return render_to_response('html_template/partials/books.html')
+
 ## rendering admin login page
 def admin_login(request):
     return render_to_response('html_template/admin_template/adminPanelLogin.html')
@@ -24,7 +28,7 @@ def auth(request):
             return HttpResponse(json.dumps({"validation": "Invalid login details", "status": False}), content_type="application/json")
     else:
         return HttpResponse(json.dumps({"validation": "Invalid login details", "status": False}), content_type="application/json")
- 
+
 ## logout url
 def logout_view(request):
     logout(request)

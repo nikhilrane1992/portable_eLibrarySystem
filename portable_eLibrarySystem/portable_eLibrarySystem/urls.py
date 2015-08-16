@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^auth/$','portable_eLibrarySystem.views.auth'),
     url(r'^login/status/$','portable_eLibrarySystem.views.check_login'),
     url(r'^landing/page/$','portable_eLibrarySystem.views.landing_page'),
+    url(r'^partial_book/template/$','portable_eLibrarySystem.views.book_partial_page'),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

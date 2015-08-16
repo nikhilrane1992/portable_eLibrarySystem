@@ -1,0 +1,19 @@
+{% include 'html_template/user_template/header.html' %}
+{% verbatim %}
+<div class="container">
+<div class="row">
+<div class="col-md-4" ng-repeat="obj in eLabContaint">
+    <div class="thumbnail">
+        <!-- <iframe src="{{obj.media_url}}" width="800" height="200" /> -->
+        <iframe ng-src="{{obj.media_url}}" style="width:100%; height:400px" frameborder="0"></iframe>
+    </div>
+    <div class="caption">
+        <h4>{{obj.name}}</h4>
+        <p>{{obj.discription}}</p>
+        <p><a href="{{obj.media_url}}" class="label label-danger" rel="tooltip" title="Zoom">Zoom</a>
+        <a href="{{obj.media_url}}" class="label label-default" rel="tooltip" title="Download now">Download</a></p>
+    </div>
+</div>
+</div>
+</div><!-- /.container -->
+{% endverbatim %}
