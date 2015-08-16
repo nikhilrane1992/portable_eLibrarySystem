@@ -1,5 +1,5 @@
-var eLabApp = angular.module('eLabApp', [])
-eLabApp.controller('eLabCtrl', function($scope, $log, $http, $timeout){
+var eLabControllers = angular.module('eLabControllers', []);
+eLabControllers.controller('BookCtrl', ['$scope', '$log', '$http', '$timeout', '$routeParams' , function($scope, $log, $http, $timeout, $routeParams){
 	$log.info('eLab controller loads');
 	$scope.tagList = []
 	$http.get('/elab/get/all/tags/').
@@ -19,8 +19,9 @@ eLabApp.controller('eLabCtrl', function($scope, $log, $http, $timeout){
 
 
     $scope.eLabContaint = []
+    $scope.itemId = $routeParams.itemId
     $scope.loadContaint = function(tagObj){
-    	$http.post('/elab/get/containt/', {tag_id:tagObj.id}).
+    	$http.post('/elab/get/containt/', {tag_id:$scope.itemId}).
 	    success(function(data, status, headers, config) {
 	        console.log(data);
 	        $scope.eLabContaint = data.containt_list
@@ -29,4 +30,4 @@ eLabApp.controller('eLabCtrl', function($scope, $log, $http, $timeout){
 	        console.log(data);
 	    });
     }
-});
+}]);
