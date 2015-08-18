@@ -10,6 +10,6 @@ eLabApp.config(['$routeProvider', function($routeProvider){
 		controller: 'BookCtrl'
 	}).
 	otherwise({
-		redirectTo: '/books'
+		redirectTo: '/books/0'
 	});
 }]);

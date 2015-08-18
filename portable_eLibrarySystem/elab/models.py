@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 def get_upload_containt(instance, filename):
-    return "Containt/%s" %(filename)
+    return "Containt/%s" %(filename.replace(' ', '_'))
 
 class Media_containt(models.Model):
 	file = models.FileField(upload_to=get_upload_containt)

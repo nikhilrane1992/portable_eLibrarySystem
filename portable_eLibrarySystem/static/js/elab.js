@@ -24,10 +24,11 @@ eLabControllers.controller('BookCtrl', ['$scope', '$log', '$http', '$timeout', '
     	$http.post('/elab/get/containt/', {tag_id:$scope.itemId}).
 	    success(function(data, status, headers, config) {
 	        console.log(data);
-	        $scope.eLabContaint = data.containt_list
+	        $scope.eLabContaint = data.containt_list;
 	    }).
 	    error(function(data, status, headers, config) {
 	        console.log(data);
 	    });
     }
+
 }]);
