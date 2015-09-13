@@ -75,7 +75,7 @@ def send_containt(request):
 			media_img_url = str(i.content).split('.')
 			media_img_url[-1] = 'png'
 			media_img_url = '.'.join(media_img_url)
-			containt_list.append({'name': i.name, 'media_pdf_url': '/Media/'+str(media_pdf_url), 'media_img_url': '/Media/' + media_img_url})
+			containt_list.append({'name': i.name, 'media_pdf_url': '/Media/'+str(media_pdf_url), 'media_img_url': '/Media/' + media_img_url, 'tag': tag_id})
 		return HttpResponse(json.dumps({"containt_list": containt_list, "status": True}), content_type="application/json")
 	else:
 		return HttpResponse(json.dumps({"validation": "Your login credential invalid..!!", "status": False}), content_type="application/json")
