@@ -42,6 +42,7 @@ def check_login(request):
     else:
         return HttpResponse(json.dumps({"status": False}), content_type="application/json")
 
+## home page
 def landing_page(request):
     if request.user.is_authenticated():
         return render_to_response('html_template/user_template/index.html')
