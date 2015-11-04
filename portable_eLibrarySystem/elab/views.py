@@ -79,3 +79,4 @@ def send_containt(request):
 		return HttpResponse(json.dumps({"containt_list": containt_list, "status": True}), content_type="application/json")
 	else:
 		return HttpResponse(json.dumps({"validation": "Your login credential invalid..!!", "status": False}), content_type="application/json")
+

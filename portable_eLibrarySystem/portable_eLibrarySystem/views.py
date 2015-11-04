@@ -45,3 +45,7 @@ def check_login(request):
 def landing_page(request):
     if request.user.is_authenticated():
         return render_to_response('html_template/user_template/index.html')
+
+## render Quiz Tab
+def render_quiz_tab(request):
+    return render_to_response('html_template/partials/quiz.html')

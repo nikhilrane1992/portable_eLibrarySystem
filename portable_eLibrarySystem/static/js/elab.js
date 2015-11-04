@@ -32,3 +32,9 @@ eLabControllers.controller('BookCtrl', ['$scope', '$log', '$http', '$timeout', '
     }
 
 }]);
+
+eLabControllers.controller('QuizCtrl', ['$scope', '$log', '$http', '$timeout', '$routeParams' , function($scope, $log, $http, $timeout, $routeParams){
+    $log.info('quiz controller loads');
+
+
+}]);

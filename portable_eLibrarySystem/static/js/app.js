@@ -9,6 +9,10 @@ eLabApp.config(['$routeProvider', function($routeProvider){
 		templateUrl: '/partial_book/template/',
 		controller: 'BookCtrl'
 	}).
+	when('/quiz/', {
+		templateUrl: '/render_quiz_tab/',
+		controller: 'QuizCtrl'
+	}).
 	otherwise({
 		redirectTo: '/books/0'
 	});
