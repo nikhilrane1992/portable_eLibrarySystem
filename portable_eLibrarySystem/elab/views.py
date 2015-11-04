@@ -80,3 +80,6 @@ def send_containt(request):
 	else:
 		return HttpResponse(json.dumps({"validation": "Your login credential invalid..!!", "status": False}), content_type="application/json")
 
+## render quiz admin page
+def quiz_admin_page(request):
+	return render_to_response('admin_template/quizAdminPage.html')
