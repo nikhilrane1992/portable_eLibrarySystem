@@ -1,6 +1,6 @@
 var eLabApp = angular.module('eLabApp', [
 	'ngRoute',
-	'eLabControllers'
+	'eLabControllers',
 	]);
 
 eLabApp.config(['$routeProvider', function($routeProvider){
@@ -12,6 +12,10 @@ eLabApp.config(['$routeProvider', function($routeProvider){
 	when('/quiz/', {
 		templateUrl: '/render_quiz_tab/',
 		controller: 'QuizCtrl'
+	}).
+	when('/quiz/admin/', {
+		templateUrl: '/elab/quiz_admin_page/',
+		controller: 'QuizAdminCtrl'
 	}).
 	otherwise({
 		redirectTo: '/books/0'

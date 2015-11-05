@@ -56,3 +56,16 @@ eLabControllers.controller('QuizCtrl', ['$scope', '$log', '$http', '$timeout', '
     }
 
 }]);
+
+eLabControllers.controller('QuizAdminCtrl', ['$scope', '$log', '$http', '$timeout', '$routeParams' , function($scope, $log, $http, $timeout, $routeParams){
+    $log.info('Quiz admin controller loads');
+    $scope.tagList = []
+    $scope.question = '';
+    $scope.optionType = '';
+    $scope.option = '';
+
+    $scope.saveQuestion = function(){
+        
+    }
+
+}]);
