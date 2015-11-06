@@ -1,5 +1,5 @@
 var eLabControllers = angular.module('eLabControllers', []);
-eLabControllers.controller('BookCtrl', ['$scope', '$log', '$http', '$timeout', '$routeParams' , function($scope, $log, $http, $timeout, $routeParams){
+eLabControllers.controller('BookCtrl', ['$scope', '$log', '$http', '$timeout', '$routeParams' , function($scope, $log, $http, $timeout, $routeParams, Notification){
 	$log.info('eLab controller loads');
 	$scope.tagList = []
 	$http.get('/elab/get/all/tags/').
@@ -45,6 +45,27 @@ eLabControllers.controller('QuizCtrl', ['$scope', '$log', '$http', '$timeout', '
         console.log(data);
     });
 
+    $scope.init =  function() {
+        $scope.getQuestionAndAnswer();
+    };
+
+    $timeout($scope.init,1000);
+
+    $scope.getQuestionAndAnswer = function(){
+    $http.get('/elab/get_question_and_answer/').
+    success(function(data, status, headers, config) {
+        console.log(data);
+        if (data.status){
+            $scope.questionList = data.questionList
+        }else{
+            Notification.success(data.validation);
+        }
+    }).
+    error(function(data, status, headers, config) {
+        console.log(data);
+    });
+    }
+
     $scope.progressBar = function(){
         $('#loadbar').show();
         $('#quiz').fadeOut();
@@ -57,7 +78,7 @@ eLabControllers.controller('QuizCtrl', ['$scope', '$log', '$http', '$timeout', '
 
 }]);
 
-eLabControllers.controller('QuizAdminCtrl', ['$scope', '$log', '$http', '$timeout', '$routeParams' , function($scope, $log, $http, $timeout, $routeParams){
+eLabControllers.controller('QuizAdminCtrl', ['$scope', '$log', '$http', '$timeout', '$routeParams', function($scope, $log, $http, $timeout, $routeParams, Notification){
     $log.info('Quiz admin controller loads');
     $scope.tagList = []
     $scope.question = '';
@@ -66,18 +87,24 @@ eLabControllers.controller('QuizAdminCtrl', ['$scope', '$log', '$http', '$timeou
     $scope.optionList = [];
     $scope.rightWrong = 'Wrong';
     $scope.isRightValue = false;
+    $scope.questionList = null;
 
     $scope.saveQuestion = function(){
         console.log({question:$scope.question, optionType:$scope.optionType, optionList: $scope.optionList});
         $http.post('/elab/save_question/', {question:$scope.question, optionType:$scope.optionType, optionList: $scope.optionList}).
         success(function(data, status, headers, config) {
             console.log(data);
-            $scope.eLabContaint = data.containt_list;
+            if (data.status){
+                Notification.success(data.validation);
+            }else{
+                Notification.success(data.validation);
+            }
         }).
         error(function(data, status, headers, config) {
             console.log(data);
         });
     }
+
 
     $scope.addOption = function(){
         if ($scope.option.length != 0){
@@ -101,6 +128,10 @@ eLabControllers.controller('QuizAdminCtrl', ['$scope', '$log', '$http', '$timeou
             $(':checkbox').prop('checked', true);
             $scope.isRightValue = true;
         }
+    }
+
+    $scope.onClickNotification = function(){
+        Notification.success('Primary notification');
     }
 
 }]);

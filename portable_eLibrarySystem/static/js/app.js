@@ -1,9 +1,21 @@
 var eLabApp = angular.module('eLabApp', [
 	'ngRoute',
 	'eLabControllers',
+	'ui-notification'
 	]);
 
-eLabApp.config(['$routeProvider', function($routeProvider){
+eLabApp.config(['$routeProvider', 'NotificationProvider', function($routeProvider, NotificationProvider){
+	NotificationProvider.setOptions({
+		delay: 3000,
+		startTop: 20,
+		startRight: 10,
+		verticalSpacing: 20,
+		horizontalSpacing: 20,
+		positionX: 'right',
+		positionY: 'top'
+	});
+
+
 	$routeProvider.
 	when('/books/:itemId', {
 		templateUrl: '/partial_book/template/',
