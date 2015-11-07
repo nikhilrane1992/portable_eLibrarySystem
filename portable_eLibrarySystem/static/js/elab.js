@@ -36,6 +36,7 @@ eLabControllers.controller('BookCtrl', ['$scope', '$log', '$http', '$timeout', '
 eLabControllers.controller('QuizCtrl', ['$scope', '$log', '$http', '$timeout', '$routeParams' , function($scope, $log, $http, $timeout, $routeParams){
     $log.info('quiz controller loads');
     $scope.tagList = []
+    $scope.indexToShow = 0;
     $http.get('/elab/get/all/tags/').
     success(function(data, status, headers, config) {
         console.log(data);
@@ -66,6 +67,7 @@ eLabControllers.controller('QuizCtrl', ['$scope', '$log', '$http', '$timeout', '
     });
     }
 
+
     $scope.progressBar = function(){
         $('#loadbar').show();
         $('#quiz').fadeOut();
@@ -74,6 +76,7 @@ eLabControllers.controller('QuizCtrl', ['$scope', '$log', '$http', '$timeout', '
             $('#loadbar').fadeOut();
            /* something else */
         }, 1500);
+        $scope.indexToShow = ($scope.indexToShow + 1) % $scope.questionList.length;
     }
 
 }]);

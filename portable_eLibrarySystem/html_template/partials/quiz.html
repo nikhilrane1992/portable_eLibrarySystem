@@ -1,9 +1,10 @@
 {% include 'html_template/user_template/header.html' %}
+{% verbatim %}
 <div class="container-fluid bg-info">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content" ng-repeat="que in questionList track by $index" ng-show="$index == indexToShow">
          <div class="modal-header">
-            <h3><span class="label label-warning" id="qid">2</span> THREE is CORRECT</h3>
+            <h3 ><span class="label label-warning" id="qid">{{$index+1}}</span> {{que.question}}</h3>
         </div>
         <div class="modal-body">
             <div class="col-xs-3 col-xs-offset-5">
@@ -20,16 +21,14 @@
           </div>
 
           <div class="quiz" id="quiz" data-toggle="buttons">
-           <label class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="1">1 One</label>
-           <label class="element-animation2 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="2">2 Two</label>
-           <label class="element-animation3 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="3">3 Three</label>
-           <label class="element-animation4 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="4">4 Four</label>
+           <label class="element-animation1 btn btn-lg btn-primary btn-block" ng-repeat="opt in que.option"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer" value="1">{{$index+1}} {{opt.option}}</label>
        </div>
    </div>
-   <label class="element-animation4 btn btn-lg btn-primary btn-block" ng-click="progressBar()">Hello</label>
+   <label class="element-animation4 btn btn-lg btn-primary btn-block" ng-click="progressBar()">Next</label>
    <div class="modal-footer text-muted">
     <span id="answer"></span>
 </div>
 </div>
 </div>
 </div>
+{% endverbatim %}
