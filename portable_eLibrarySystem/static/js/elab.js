@@ -37,6 +37,7 @@ eLabControllers.controller('QuizCtrl', ['$scope', '$log', '$http', '$timeout', '
     $log.info('quiz controller loads');
     $scope.tagList = []
     $scope.indexToShow = 0;
+    $scope.isRight = null;
     $http.get('/elab/get/all/tags/').
     success(function(data, status, headers, config) {
         console.log(data);
@@ -67,16 +68,19 @@ eLabControllers.controller('QuizCtrl', ['$scope', '$log', '$http', '$timeout', '
     });
     }
 
-
-    $scope.progressBar = function(){
-        $('#loadbar').show();
-        $('#quiz').fadeOut();
-        setTimeout(function(){
-            $('#quiz').show();
-            $('#loadbar').fadeOut();
-           /* something else */
-        }, 1500);
+    $scope.changeToNext = function(){
+        $scope.isRight = null;
         $scope.indexToShow = ($scope.indexToShow + 1) % $scope.questionList.length;
+    };
+
+    $scope.changeToPrevious = function(){
+        $scope.isRight = null;
+        $scope.indexToShow = ($scope.indexToShow - 1) % $scope.questionList.length;
+    };
+
+    $scope.checkAnswer = function(option){
+        console.log(option);
+        $scope.isRight = option.isRight;
     }
 
 }]);
