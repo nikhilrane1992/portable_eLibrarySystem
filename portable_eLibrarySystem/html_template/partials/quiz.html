@@ -8,7 +8,7 @@
       <div class="modal-dialog">
         <div class="modal-content" ng-repeat="que in questionList track by $index" ng-show="$index == indexToShow">
           <div class="modal-header">
-            <h3 ><span class="label label-warning" id="qid">{{$index+1}}</span> {{que.question}}</h3>{{indexToShow}}
+            <h3 ><span class="label label-warning" id="qid">{{$index+1}}</span> {{que.question}}</h3>
           </div>
           <div class="modal-body">
             <div class="quiz" id="quiz" data-toggle="buttons">

@@ -1,4 +1,3 @@
-from tokenapi.decorators import token_required
 from django.shortcuts import HttpResponse, render_to_response, HttpResponseRedirect
 import json
 from django.contrib.auth import logout
