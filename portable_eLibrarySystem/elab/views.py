@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from models import Econtaint, Media_containt
+from models import Econtaint, Media_containt, Game_module_question
 from forms import ContaintForm, FileForm
 from django.shortcuts import HttpResponse, render_to_response, HttpResponseRedirect
 import json
@@ -77,5 +77,38 @@ def send_containt(request):
 			media_img_url = '.'.join(media_img_url)
 			containt_list.append({'name': i.name, 'media_pdf_url': '/Media/'+str(media_pdf_url), 'media_img_url': '/Media/' + media_img_url, 'tag': tag_id})
 		return HttpResponse(json.dumps({"containt_list": containt_list, "status": True}), content_type="application/json")
+	else:
+		return HttpResponse(json.dumps({"validation": "Your login credential invalid..!!", "status": False}), content_type="application/json")
+
+## render quiz admin page
+def quiz_admin_page(request):
+	return render_to_response('admin_template/quizAdminPage.html')
+
+## save question and answers
+def save_question_options(request):
+	if request.user.is_authenticated():
+		data_dictonary = json.loads(request.body)
+		question = data_dictonary['question'].strip()
+		optionType = data_dictonary['optionType']
+		optionList = data_dictonary['optionList']
+		quizObj = Game_module_question(question=question, option=json.dumps(optionList))
+		if optionType.strip().upper() == 'RADIO':
+			quizObj.optionType = Game_module_question.RADIO
+		else:
+			quizObj.optionType = Game_module_question.IMAGE
+		quizObj.save()
+		return HttpResponse(json.dumps({"validation": "Saved successfully..!!", "status": True}), content_type="application/json")
+	else:
+		return HttpResponse(json.dumps({"validation": "Your login credential invalid..!!", "status": False}), content_type="application/json")
+
+## send question and answer
+def get_question_and_answer(request):
+	if request.user.is_authenticated():
+		quizObjs = Game_module_question.objects.all()
+		questionList = []
+		for i in quizObjs:
+			obj = {"question": i.question, "option": json.loads(i.option), "optionType": dict(Game_module_question.STATUSCHOICES)[i.optionType].strip().upper()}
+			questionList.append(obj)
+		return HttpResponse(json.dumps({"questionList": questionList, "status": True}), content_type="application/json")
 	else:
 		return HttpResponse(json.dumps({"validation": "Your login credential invalid..!!", "status": False}), content_type="application/json")

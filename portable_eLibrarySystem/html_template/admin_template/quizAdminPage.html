@@ -1,0 +1,73 @@
+{% verbatim %}
+<div class="container">
+    <div class="row">
+        <div class="form-horizontal">
+            <fieldset>
+                <!-- Form Name -->
+                <legend>Add question</legend>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="question">Question</label>
+                    <div class="col-md-6">
+                        <input id="question" name="question" type="text" placeholder="Add your question here.." class="form-control input-md" ng-model="question">
+                    </div>
+                </div>
+                <!-- Multiple Radios (inline) -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="dataFormat">Option Type</label>
+                    <div class="col-md-4">
+                        <label class="radio-inline" for="dataFormat-0">
+                            <input type="radio" name="dataFormat" id="dataFormat-0" value="IMAGE" checked="checked" ng-model="optionType"> Image
+                        </label>
+                        <label class="radio-inline" for="dataFormat-1">
+                            <input type="radio" name="dataFormat" id="dataFormat-1" value="RADIO" ng-model="optionType"> Text
+                        </label>
+                    </div>
+                </div>
+                <!-- Appended Input-->
+                <div class="form-group" ng-show="optionList.length!=0">
+                 <label class="col-md-4 control-label" for="dataFormat">Option Table</label>
+                    <div class="col-md-4">
+                    <table class="table">
+                        <tr>
+                            <th>
+                                ID
+                            </th>
+                            <th>
+                                Option
+                            </th>
+                            <th>
+                                Correct / Wrong
+                            </th>
+                        </tr>
+                        <tr ng-repeat="i in optionList">
+                            <td>{{i.id}}</td>
+                            <td>{{i.option}}</td>
+                            <td>{{i.isRight}}</td>
+                        </tr>
+                    </table>
+                    </div>
+                 </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="account">Options</label>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input id="account" name="account" class="form-control" placeholder="Add option here.." type="text" ng-model="option">
+                            <span class="input-group-addon" style="cursor:pointer; width:100px;" ng-click="isRightWrong()"><input type="checkbox" class="radio-inline">   {{rightWrong}}</span>
+                            <span class="input-group-addon" style="cursor:pointer" ng-click="addOption()">+Add Option</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Button (Double) -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="submitButton"></label>
+                    <div class="col-md-8">
+                        <button id="submitButton" class="btn btn-success" ng-click="saveQuestion()">Save</button>
+                        <button id="cancel" name="cancel" class="btn btn-inverse" ng-click="onClickNotification()">Cancel</button>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+{% endverbatim %}

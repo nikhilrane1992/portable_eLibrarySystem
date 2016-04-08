@@ -22,3 +22,14 @@ class Econtaint(models.Model):
 	modified = models.DateTimeField(auto_now=True)
 	def __unicode__(self):
 		return self.name + ' '+'Tag-->'+str(self.tag)
+
+
+class Game_module_question(models.Model):
+    IMAGE = 0
+    RADIO = 1
+    STATUSCHOICES = ((IMAGE, "Image"), (RADIO, "Radio"))
+    question = models.TextField()
+    optionType = models.BigIntegerField(choices=STATUSCHOICES)
+    option = models.TextField()
+    def __unicode__(self):
+        return self.question

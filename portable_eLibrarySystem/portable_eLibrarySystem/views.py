@@ -1,4 +1,3 @@
-from tokenapi.decorators import token_required
 from django.shortcuts import HttpResponse, render_to_response, HttpResponseRedirect
 import json
 from django.contrib.auth import logout
@@ -42,6 +41,11 @@ def check_login(request):
     else:
         return HttpResponse(json.dumps({"status": False}), content_type="application/json")
 
+## home page
 def landing_page(request):
     if request.user.is_authenticated():
         return render_to_response('html_template/user_template/index.html')
+
+## render Quiz Tab
+def render_quiz_tab(request):
+    return render_to_response('html_template/partials/quiz.html')
