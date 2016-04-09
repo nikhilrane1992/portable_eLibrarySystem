@@ -1,14 +1,19 @@
 {% include 'html_template/user_template/header.html' %}
 {% verbatim %}
-<div class="container-fluid bg-info">
+<style>
+  @media screen and (max-width: 400px){
+    .result{
+      margin-left: 90px !important;
+    }
+  }
+</style>
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-10">
-
-
+    <div class="col-md-8 col-md-offset-2">
       <div class="modal-dialog">
         <div class="modal-content" ng-repeat="que in questionList track by $index" ng-show="$index == indexToShow">
           <div class="modal-header">
-            <h3 ><span class="label label-warning" id="qid">{{$index+1}}</span> {{que.question}}</h3>
+            <h3 ><span class="label label-warning" id="qid">{{indexToShow}}</span> {{que.question}}</h3>
           </div>
           <div class="modal-body">
             <div class="quiz" id="quiz" data-toggle="buttons">
@@ -17,22 +22,26 @@
           </div>
         </div>
         <div ng-hide="isRight==null" style="position:absolute;">
-          <div style="margin-top:15px;" ng-if="isRight">
+          <div style="margin-top: 20px;margin-left: 200px;" class="result" ng-if="isRight">
             <img src="/static/images/icon_correct.svg" style="width:30px;">
             <label>Correct Answer</label>
           </div>
-          <div style="margin-top:15px;" ng-if="!isRight">
+          <div style="margin-top:20px; margin-left: 200px;" class="result" ng-if="!isRight">
             <img src="/static/images/icon_incorrect.svg" style="width:30px;">
             <label>Incorrect Answer</label>
           </div>
         </div>
+        <div style="margin-top:50px;">
+          <label class="btn btn-lg" style="float:right; padding:20px; margin-bottom:20px;" ng-click="changeToNext()"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> </label>
+          <label class="btn btn-lg pull-left" style="float:right; padding:20px; margin-bottom:20px;" ng-click="changeToPrevious()"><span class="btn-label"><i class="glyphicon glyphicon-chevron-left"></i></span> </label>
+        </div>
       </div>
-
     </div>
-    <div class="col-md-2">
-    <label class="btn btn-lg" style="float:right; padding:20px; margin-bottom:20px;" ng-click="changeToNext()"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> </label>
-    </div>
-
   </div>
+  <div class="row" style="margin:10px;">
+      <div class="col-md-offset-4 col-md-4 col-sm-12">
+        <div class="alert alert-danger text-center" role="alert" ng-hide="quizEnd==null">{{quizEnd}}</div>
+      </div>
+    </div>
 </div>
 {% endverbatim %}
