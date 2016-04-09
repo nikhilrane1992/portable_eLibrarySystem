@@ -14,26 +14,18 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                {% verbatim %}
-                    <li ng-repeat="tagObj in tagList">
-                        <a href="#/books/{{tagObj.id}}" ng-click="loadContaint(tagObj)">{{tagObj.tag}}</a>
+                    <li>
+                        <a href="/elab/add/containt/">Add Book/Video</a>
                     </li>
                     <li>
-                        <a href="#/quiz/">quiz</a>
+                        <a href="/landing/page/#/quiz/admin/">Quiz</a>
                     </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-                {% endverbatim %}
                 </ul>
-                <div style="padding:10px;">
-                    <a href="/admin_logout/">
-                        <button class="btn btn-danger pull-right">Logout</button>
-                    </a>
-                </div>
+            <div style="padding:10px;">
+                <a href="/admin_logout/">
+                    <button class="btn btn-danger pull-right">Logout</button>
+                </a>
+            </div>
             </div>
             <!-- /.navbar-collapse -->
         </div>

@@ -35,9 +35,13 @@ def auth(request):
         return HttpResponse(json.dumps({"validation": "Invalid login details", "status": False}), content_type="application/json")
 
 ## logout url
-def logout_view(request):
+def admin_logout_view(request):
     logout(request)
-    return HttpResponseRedirect('/login')
+    return HttpResponseRedirect('/admin_login/')
+
+def user_logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')
 
 ## check user login or not status
 def check_login(request):
