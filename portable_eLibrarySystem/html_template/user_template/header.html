@@ -1,3 +1,16 @@
+
+<style>
+  @media screen and (max-width: 780px){
+    .logoutButton{
+      display: none;
+    }
+  }
+  @media screen and (min-width: 780px){
+    .logoutBtn a{
+      display: none !important;
+    }
+  }
+</style>
 <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -27,11 +40,14 @@
                     <li>
                         <a href="#">Contact</a>
                     </li>
+                    <li class="logoutBtn">
+                        <a href="/admin_logout/">Logout</a>
+                    </li>
                 {% endverbatim %}
                 </ul>
-                <div style="padding:10px;">
+                <div style="padding:10px;" class="logoutButton">
                     <a href="/admin_logout/">
-                        <button class="btn btn-danger pull-right">Logout</button>
+                        <p class="btn btn-danger pull-right">Logout</p>
                     </a>
                 </div>
             </div>

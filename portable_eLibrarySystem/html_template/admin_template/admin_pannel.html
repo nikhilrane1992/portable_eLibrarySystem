@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	{% load static %}
 	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
@@ -10,7 +11,9 @@
 	<div class="container-fluid"  style="background-color: #f1f1f1; min-height: 90vh; margin-top:55px;">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-6 well">
+			<p style="text-align:center; padding:10px;"><label>Add Book/Video Pannel</label></p>
+				<div class="col-sm-12 well">
+				<label>Step 1</label>
 					<form action="/elab/add/containt/" method="post" enctype="multipart/form-data">
 						{% for field in file_form %}
 						<div class="form-group">
@@ -26,7 +29,8 @@
 						<button  class="btn btn-default" type="submit" style="display:block; margin: 0 auto; ">Submit</button>
 					</form>
 				</div>
-				<div class="col-md-6 well">
+				<div class="col-sm-12 well">
+					<label>Step 2</label>
 					<form action="/elab/add/containt/" method="post">
 						{% for field in containt_form %}
 						<div class="form-group">
