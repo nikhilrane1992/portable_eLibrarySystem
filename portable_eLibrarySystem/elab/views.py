@@ -35,7 +35,7 @@ def add_containt(request):
 					args['containt_form'] = containt_form
 					args['file_form'] = file_form
 					print file_form.errors
-					return render_to_response('admin_template/admin_pannel.html', args)
+					return render_to_response('html_template/admin_template/admin_pannel.html', args)
 
 			except Exception, e:
 				print "Exception-->", e
@@ -48,14 +48,14 @@ def add_containt(request):
 					args['containt_form'] = containt_form
 					args['file_form'] = file_form
 					print containt_form.errors
-					return render_to_response('admin_template/admin_pannel.html', args)
+					return render_to_response('html_template/admin_template/admin_pannel.html', args)
 
 		else:
 			containt_form = ContaintForm()
 			file_form = FileForm()
 			args['containt_form'] = containt_form
 			args['file_form'] = file_form
-		return render_to_response('admin_template/admin_pannel.html', args)
+		return render_to_response('html_template/admin_template/admin_pannel.html', args)
 	else:
 		return HttpResponseRedirect('/admin_login/')
 
