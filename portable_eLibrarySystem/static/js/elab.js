@@ -71,19 +71,21 @@ eLabControllers.controller('QuizCtrl', ['$scope', '$log', '$http', '$timeout', '
 
     $scope.changeToNext = function(){
         $scope.isRight = null;
-        $log.info($scope.indexToShow +"  "+ $scope.questionList.length)
         if ($scope.indexToShow+1 >= $scope.questionList.length){
-            $scope.quizEnd = "Quiz ended !!"
+            $scope.quizEnd = "Quiz ended !!";
         }else{
             $scope.indexToShow = ($scope.indexToShow + 1) % $scope.questionList.length;
+            // $log.info($scope.indexToShow+1 +"  "+ $scope.questionList.length)
         }
     };
 
     $scope.changeToPrevious = function(){
+        if ($scope.indexToShow == $scope.questionList.length-1){
+            $scope.quizEnd = null;
+        }
+        // $log.info($scope.indexToShow +"  "+ $scope.questionList.length)
         $scope.isRight = null;
-        $log.info($scope.indexToShow);
         $scope.indexToShow = ($scope.indexToShow - 1) % $scope.questionList.length;
-        $log.info($scope.indexToShow);
         if ($scope.indexToShow <= 0){
             $scope.indexToShow = 1
         }
