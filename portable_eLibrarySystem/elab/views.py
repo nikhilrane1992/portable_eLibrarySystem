@@ -11,50 +11,54 @@ media_files_url = BASE_DIR + "/Media/Containt/"
 
 # Create your views here.
 def add_containt(request):
-	args = {}
-	if request.POST:
-		try:
-			request.POST['file_field']
-			file_form = FileForm(request.POST, request.FILES)
-			if file_form.is_valid():
-				file_name = request.FILES['file']
-				media_containt = Media_containt(file=file_name)
-				media_containt.save()
-				pdf_file_name = str(file_name).replace(' ', '_')
-				image_file_name = str(file_name).replace(' ', '_').split('.')
-				image_file_name[-1] = 'png'
-				image_file_name = '.'.join(image_file_name)
-				cmd = 'gs -o '+media_files_url+image_file_name+' -sDEVICE=pngalpha -dLastPage=1 '+media_files_url+pdf_file_name
-				print cmd
-				subprocess.call(cmd, shell=True)
-				print 'save and redirect'
-				return HttpResponseRedirect('/elab/add/containt/')
-			else:
-				containt_form = ContaintForm()
-				args['containt_form'] = containt_form
-				args['file_form'] = file_form
-				print file_form.errors
-				return render_to_response('admin_template/admin_pannel.html', args)
+	if request.user.is_authenticated():
+		args = {}
+		if request.POST:
+			try:
+				request.POST['file_field']
+				file_form = FileForm(request.POST, request.FILES)
+				if file_form.is_valid():
+					file_name = request.FILES['file']
+					media_containt = Media_containt(file=file_name)
+					media_containt.save()
+					pdf_file_name = str(file_name).replace(' ', '_')
+					image_file_name = str(file_name).replace(' ', '_').split('.')
+					image_file_name[-1] = 'png'
+					image_file_name = '.'.join(image_file_name)
+					cmd = 'gs -o '+media_files_url+image_file_name+' -sDEVICE=pngalpha -dLastPage=1 '+media_files_url+pdf_file_name
+					print cmd
+					subprocess.call(cmd, shell=True)
+					print 'save and redirect'
+					return HttpResponseRedirect('/elab/add/containt/')
+				else:
+					containt_form = ContaintForm()
+					args['containt_form'] = containt_form
+					args['file_form'] = file_form
+					print file_form.errors
+					return render_to_response('admin_template/admin_pannel.html', args)
 
-		except Exception, e:
-			print "Exception-->", e
-			containt_form = ContaintForm(request.POST)
-			if containt_form.is_valid():
-				containt_form.save()
-				return HttpResponseRedirect('/elab/add/containt/')
-			else:
-				file_form = FileForm()
-				args['containt_form'] = containt_form
-				args['file_form'] = file_form
-				print containt_form.errors
-				return render_to_response('admin_template/admin_pannel.html', args)
+			except Exception, e:
+				print "Exception-->", e
+				containt_form = ContaintForm(request.POST)
+				if containt_form.is_valid():
+					containt_form.save()
+					return HttpResponseRedirect('/elab/add/containt/')
+				else:
+					file_form = FileForm()
+					args['containt_form'] = containt_form
+					args['file_form'] = file_form
+					print containt_form.errors
+					return render_to_response('admin_template/admin_pannel.html', args)
 
+		else:
+			containt_form = ContaintForm()
+			file_form = FileForm()
+			args['containt_form'] = containt_form
+			args['file_form'] = file_form
+		return render_to_response('admin_template/admin_pannel.html', args)
 	else:
-		containt_form = ContaintForm()
-		file_form = FileForm()
-		args['containt_form'] = containt_form
-		args['file_form'] = file_form
-	return render_to_response('admin_template/admin_pannel.html', args)
+		return HttpResponseRedirect('/admin_login/')
+
 
 def send_tags(request):
 	if request.user.is_authenticated():

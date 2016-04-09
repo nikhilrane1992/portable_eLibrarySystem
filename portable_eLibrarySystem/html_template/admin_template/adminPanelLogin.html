@@ -8,12 +8,12 @@
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
-<body>
+<body ng-controller="loginAppCtrl">
 
   <!-- header ends here -->
   <!-- ----------------------------------------------------------------- -->
 {% verbatim %}
-  <div ng-controller="loginAppCtrl">
+  <div>
     <div class="row" style="margin-top:40px;">
       <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
         <div class="panel panel-default anmin_login_panel_margin_top">
@@ -52,10 +52,10 @@
 
         </div>
         <div class="row">
-      <div class="col-sm-6 col-sm-offset-3">
-        <div class="alert alert-danger text-center" role="alert" ng-show="!errormsg==''" >{{errormsg}}</div>
-      </div>
-    </div>
+          <div class="col-sm-6 col-sm-offset-3" ng-show="!errormsg==''">
+            <div class="alert alert-danger text-center" role="alert">{{errormsg}}</div>
+          </div>
+        </div>
       </div>
     </div>
 

@@ -21,11 +21,12 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^elab/', include('elab.urls')),
-    url(r'^login/$','portable_eLibrarySystem.views.admin_login'),
+    url(r'^admin_login/$','portable_eLibrarySystem.views.admin_login'),
     url(r'^logout/$','portable_eLibrarySystem.views.logout_view'),
     url(r'^auth/$','portable_eLibrarySystem.views.auth'),
     url(r'^login/status/$','portable_eLibrarySystem.views.check_login'),
     url(r'^landing/page/$','portable_eLibrarySystem.views.landing_page'),
     url(r'^partial_book/template/$','portable_eLibrarySystem.views.book_partial_page'),
     url(r'^render_quiz_tab/$','portable_eLibrarySystem.views.render_quiz_tab'),
+    url(r'^$','portable_eLibrarySystem.views.render_login_page'),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

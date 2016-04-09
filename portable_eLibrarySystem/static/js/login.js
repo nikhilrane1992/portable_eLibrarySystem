@@ -10,9 +10,11 @@ loginApp.controller('loginAppCtrl', function($scope, $log, $http){
         success(function(data, status, headers, config) {
             console.log(data);
             if (data.status){
-            	window.location = data.url;
+                window.location = data.redirectUrl;
             }else{
-            	$scope.errormsg = data.validation;
+                $log.info($scope.errormsg);
+                $scope.errormsg = data.validation;
+                $log.info($scope.errormsg);
             }
         }).
         error(function(data, status, headers, config) {
