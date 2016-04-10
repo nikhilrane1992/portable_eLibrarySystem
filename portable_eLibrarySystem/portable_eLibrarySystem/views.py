@@ -13,6 +13,7 @@ def admin_login(request):
 
 ## login in our system
 def auth(request):
+    print "login function"
     data_dictonary = json.loads(request.body)
     username = data_dictonary['username']
     password = data_dictonary['password']

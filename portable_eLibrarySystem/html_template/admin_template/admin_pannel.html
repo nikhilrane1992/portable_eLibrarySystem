@@ -12,7 +12,7 @@
 		<div class="container">
 			<div class="row">
 			<p style="text-align:center; padding:10px;"><label>Add Book/Video Pannel</label></p>
-				<div class="col-sm-12 well">
+				<div class="col-sm-12 col-md-8 col-md-offset-2 well">
 				<label>Step 1</label>
 					<form action="/elab/add/containt/" method="post" enctype="multipart/form-data">
 						{% for field in file_form %}
@@ -29,7 +29,7 @@
 						<button  class="btn btn-default" type="submit" style="display:block; margin: 0 auto; ">Submit</button>
 					</form>
 				</div>
-				<div class="col-sm-12 well">
+				<div class="col-sm-12 col-md-offset-2 col-md-8 well">
 					<label>Step 2</label>
 					<form action="/elab/add/containt/" method="post">
 						{% for field in containt_form %}
