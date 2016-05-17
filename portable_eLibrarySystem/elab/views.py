@@ -86,7 +86,7 @@ def send_containt(request):
 
 ## render quiz admin page
 def quiz_admin_page(request):
-	return render_to_response('admin_template/quizAdminPage.html')
+	return render_to_response('html_template/admin_template/quizAdminPage.html')
 
 ## save question and answers
 def save_question_options(request):
