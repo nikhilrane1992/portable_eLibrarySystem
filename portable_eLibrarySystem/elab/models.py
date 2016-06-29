@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 
 def get_upload_containt(instance, filename):
     return "Containt/%s" %(filename.replace(' ', '_'))
@@ -20,6 +19,7 @@ class Econtaint(models.Model):
 	content = models.ForeignKey('Media_containt')
 	created = models.DateTimeField(auto_now_add=True)
 	modified = models.DateTimeField(auto_now=True)
+	
 	def __unicode__(self):
 		return self.name + ' '+'Tag-->'+str(self.tag)
 
@@ -31,5 +31,6 @@ class Game_module_question(models.Model):
     question = models.TextField()
     optionType = models.BigIntegerField(choices=STATUSCHOICES)
     option = models.TextField()
+    
     def __unicode__(self):
         return self.question
