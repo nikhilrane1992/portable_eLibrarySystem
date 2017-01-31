@@ -1,4 +1,17 @@
-var eLabControllers = angular.module('eLabControllers', []);
+var eLabControllers = angular.module('eLabControllers', ['ui-notification']);
+eLabControllers.config(['$routeProvider', 'NotificationProvider', '$httpProvider', function($routeProvider, NotificationProvider, $httpProvider) {
+
+    NotificationProvider.setOptions({
+        delay: 3000,
+        startTop: 20,
+        startRight: 10,
+        verticalSpacing: 20,
+        horizontalSpacing: 20,
+        positionX: 'right',
+        positionY: 'top'
+    });
+}]);
+
 eLabControllers.controller('BookCtrl', ['$scope', '$log', '$http', '$timeout', '$routeParams' , function($scope, $log, $http, $timeout, $routeParams, Notification){
 	$log.info('eLab controller loads');
 	$scope.tagList = []
@@ -98,7 +111,7 @@ eLabControllers.controller('QuizCtrl', ['$scope', '$log', '$http', '$timeout', '
 
 }]);
 
-eLabControllers.controller('QuizAdminCtrl', ['$scope', '$log', '$http', '$timeout', '$routeParams', function($scope, $log, $http, $timeout, $routeParams, Notification){
+eLabControllers.controller('QuizAdminCtrl', ['$scope', '$log', '$http', '$timeout', '$routeParams', 'Notification', function($scope, $log, $http, $timeout, $routeParams, Notification){
     $log.info('Quiz admin controller loads');
     $scope.tagList = []
     $scope.question = '';
@@ -116,6 +129,7 @@ eLabControllers.controller('QuizAdminCtrl', ['$scope', '$log', '$http', '$timeou
             console.log(data);
             if (data.status){
                 Notification.success(data.validation);
+                setTimeout(function(){ window.location.reload(false); }, 1000);
             }else{
                 Notification.success(data.validation);
             }
