@@ -165,7 +165,7 @@ eLabControllers.controller('QuizAdminCtrl', ['$scope', '$log', '$http', '$timeou
     }
 
     $scope.onClickNotification = function(){
-        Notification.success('Primary notification');
+        window.location.reload(false);
     }
 
 }]);
